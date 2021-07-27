@@ -1,8 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import FooApi from "./components/foo/api/FooApi";
 
 function App() {
+  const [apiResult, setApiResult] = React.useState("Loading");
+
+  React.useEffect(() => {
+    FooApi.foo()
+      .then((x) => setApiResult(x.payload["hello"]))
+      .catch(console.log);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +27,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          API Payload: <code>{apiResult}</code>
+        </p>
       </header>
     </div>
   );
