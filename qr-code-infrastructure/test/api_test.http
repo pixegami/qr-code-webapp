@@ -1,0 +1,1 @@
+GET https://api.qr.pixegami.com/foo?operation=foo HTTP/1.1

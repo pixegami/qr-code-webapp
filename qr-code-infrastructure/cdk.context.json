@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=535707483867:domainName=pixegami.com:privateZone=false:region=us-east-1": {
+    "Id": "/hostedzone/Z102579425X9W9KGG1TH5",
+    "Name": "pixegami.com."
+  },
+  "hosted-zone:account=535707483867:domainName=pixegami.com:region=us-east-1": {
+    "Id": "/hostedzone/Z102579425X9W9KGG1TH5",
+    "Name": "pixegami.com."
+  }
+}

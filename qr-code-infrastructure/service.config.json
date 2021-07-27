@@ -1,0 +1,8 @@
+{
+  "name": "QRGenerator",
+  "awsAccount": "535707483867",
+  "awsRegion": "us-east-1",
+  "domain": "pixegami.com",
+  "subdomain": "qr",
+  "prefix": "qr"
+}
