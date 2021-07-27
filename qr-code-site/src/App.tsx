@@ -28,7 +28,7 @@ function App() {
           Learn React
         </a>
         <p>
-          API Payload: <code>{apiResult}</code>
+          API Payload: <code className="text-green-300">{apiResult}</code>
         </p>
       </header>
     </div>
