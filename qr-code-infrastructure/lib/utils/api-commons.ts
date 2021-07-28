@@ -17,7 +17,10 @@ export interface ApiWithTableProps {
   method: string[];
 }
 
-export const apiWithTable = (scope: Construct, props: ApiWithTableProps) => {
+export const apiWithTable = (
+  scope: Construct,
+  props: ApiWithTableProps
+): lambda.Function => {
   const functionProps: lambda.FunctionProps = {
     code: Code.fromAsset(props.codePath),
     runtime: Runtime.PYTHON_3_7,
@@ -54,6 +57,7 @@ export const apiWithTable = (scope: Construct, props: ApiWithTableProps) => {
     });
   });
   addCorsOptions(crudApi);
+  return lambdaFunction;
 };
 
 export const addCorsOptions = (apiResource: apigateway.IResource) => {

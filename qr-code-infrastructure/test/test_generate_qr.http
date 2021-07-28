@@ -1,0 +1,7 @@
+POST https://api.qr.pixegami.com/foo HTTP/1.1
+content-type: application/json
+
+{
+    "operation": "generate_qr_message",
+    "message": "Hello World!"
+}

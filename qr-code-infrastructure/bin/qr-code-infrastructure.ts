@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
+import "source-map-support/register";
+import * as cdk from "@aws-cdk/core";
 import { AppInfrastructureStack } from "../lib/app-infrastructure-stack";
 import * as config from "../service.config.json";
-import ServiceProps from '../lib/utils/service-props';
+import ServiceProps from "../lib/utils/service-props";
 
 // Configure all infrastructure things here.
 const serviceProps: ServiceProps = {
