@@ -3,8 +3,8 @@ import * as ddb from "@aws-cdk/aws-dynamodb";
 import { BillingMode } from "@aws-cdk/aws-dynamodb";
 import ServiceProps from "../../utils/service-props";
 
-const createFooTable = (scope: cdk.Construct, serviceProps: ServiceProps) => {
-  const tableName: string = `${serviceProps.servicePrefix}.foo`;
+const createQRTable = (scope: cdk.Construct, serviceProps: ServiceProps) => {
+  const tableName: string = `${serviceProps.servicePrefix}.QRMessages`;
   const table: ddb.Table = new ddb.Table(scope, "ServiceDataTable", {
     partitionKey: {
       name: "pk",
@@ -22,4 +22,4 @@ const createFooTable = (scope: cdk.Construct, serviceProps: ServiceProps) => {
   return table;
 };
 
-export default createFooTable;
+export default createQRTable;

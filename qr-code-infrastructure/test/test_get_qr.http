@@ -1,1 +1,1 @@
-GET https://api.qr.pixegami.com/foo?operation=get_qr_message&tag=qr-751338708fce HTTP/1.1
+GET https://api.qr.pixegami.com/qr?operation=get_qr_message&tag=qr-f8c6536a0b14 HTTP/1.1

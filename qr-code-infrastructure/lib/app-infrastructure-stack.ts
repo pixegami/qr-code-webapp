@@ -4,7 +4,7 @@ import * as lambda from "@aws-cdk/aws-lambda";
 import { StaticSite } from "./stacks/static-site";
 import ServiceProps from "./utils/service-props";
 import createRestApi from "./utils/create-rest-api";
-import createFooApi from "./stacks/create-foo-api";
+import createQRApi from "./stacks/create-qr-api";
 
 export class AppInfrastructureStack extends cdk.Stack {
   constructor(
@@ -40,7 +40,7 @@ export class AppInfrastructureStack extends cdk.Stack {
     });
 
     const api = createRestApi(this, apiDomainName, zone, serviceProps);
-    createFooApi(this, api, layer, serviceProps);
+    createQRApi(this, api, layer, serviceProps);
 
     // Main static site front-end.
     new StaticSite(this, "Site", {
