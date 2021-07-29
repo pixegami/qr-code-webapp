@@ -41,6 +41,7 @@ class GenerateQRMessageHandler(ApiHandler):
             "received": message,
             "qr_result": str(qr_result),
             "presigned_url": presigned_url,
+            "tag": qr_result.tag
         }
 
         return api_response(

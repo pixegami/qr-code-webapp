@@ -3,11 +3,15 @@ import { FooResponse, withFooResponse } from "./FooResponse";
 
 class FooApi extends BaseApi {
   protected static getEndpoint(): string {
-    return "https://api.qr.pixegami.com/foo";
+    return "https://api.qr.pixegami.com/qr";
   }
 
-  public static foo(): Promise<FooResponse> {
-    return this.call("foo", {});
+  public static generateQRFromMessage(message: string): Promise<FooResponse> {
+    return this.call("generate_qr_message", { message });
+  }
+
+  public static getMessageFromTag(tag: string): Promise<FooResponse> {
+    return this.call("get_qr_message", { tag });
   }
 
   private static call(apiName: string, params: any): Promise<FooResponse> {

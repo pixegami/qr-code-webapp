@@ -1,4 +1,5 @@
 import FooApi from "./FooApi";
+import { v4 as uuidv4 } from "uuid";
 
 beforeEach(async () => {
   // HTTP Adapter required to solve CORS error.
@@ -8,12 +9,17 @@ beforeEach(async () => {
   jest.setTimeout(45000);
 });
 
-test("foo", async () => {
-  // Token validation should succeed.
-  const response = await FooApi.foo();
-  console.log(response);
+test("can generate and get qr message", async () => {
+  const message: string = "Hello this is a unique message: " + uuidv4();
+  const generateMessageResponse = await FooApi.generateQRFromMessage(message);
+  console.log(generateMessageResponse);
+  expect(generateMessageResponse.status).toBe(200);
+  expect(generateMessageResponse.payload).toHaveProperty("tag");
 
-  expect(response.status).toBe(200);
-  expect(response.payload).toHaveProperty("hello");
-  expect(response.payload["hello"]).toBe("world");
+  const tag = generateMessageResponse.payload["tag"];
+  const getMessageResponse = await FooApi.getMessageFromTag(tag);
+  console.log(getMessageResponse);
+  expect(getMessageResponse.status).toBe(200);
+  expect(getMessageResponse.payload).toHaveProperty("message");
+  expect(getMessageResponse.payload["message"]).toBe(message);
 });

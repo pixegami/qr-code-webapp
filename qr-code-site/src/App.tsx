@@ -1,36 +1,28 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import FooApi from "./components/foo/api/FooApi";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import IndexPage from "./components/pages/IndexPage";
+import ViewPage from "./components/pages/ViewPage";
 
 function App() {
-  const [apiResult, setApiResult] = React.useState("Loading");
-
-  React.useEffect(() => {
-    FooApi.foo()
-      .then((x) => setApiResult(x.payload["hello"]))
-      .catch(console.log);
-  }, []);
-
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>
-          API Payload: <code className="text-green-300">{apiResult}</code>
-        </p>
-      </header>
+      <Router>
+        <Switch>
+          <Route path="/view">
+            <ViewPage />
+          </Route>
+          <Route path="/">
+            <IndexPage />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
