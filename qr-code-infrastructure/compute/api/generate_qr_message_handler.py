@@ -1,4 +1,5 @@
 from api_utils import api_response, ApiHandler, ApiDatabase
+from api_utils.api_exception import ApiException
 from generate_qr import generate_qr
 from qr_item import QrItem
 import boto3
@@ -16,6 +17,10 @@ class GenerateQRMessageHandler(ApiHandler):
 
         message = request_data["message"]
         qr_result = generate_qr("/tmp")
+
+        # If message is too long, fail.
+        if len(message) > 512:
+            raise ApiException(400, "Message is too long. Max size is 512 characters.")
 
         # Put the image into the bucket and return the URL.
         bucket_name = os.environ["IMAGE_BUCKET_NAME"]
@@ -38,8 +43,6 @@ class GenerateQRMessageHandler(ApiHandler):
 
         # Assemble the response.
         response_payload = {
-            "received": message,
-            "qr_result": str(qr_result),
             "presigned_url": presigned_url,
             "tag": qr_result.tag
         }

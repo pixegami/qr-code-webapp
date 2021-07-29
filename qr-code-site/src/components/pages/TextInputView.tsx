@@ -10,19 +10,37 @@ interface TextInputViewProps {
 const TextInputView: React.FC<TextInputViewProps> = (props) => {
   const buttonText: string = props.isLoading ? "Loading" : "Generate";
   const buttonStyle: string = props.isLoading ? "opacity-60 " : "";
+  const MAX_MESSAGE_SIZE = 512;
+  const currentMessageSize = props.message.length;
+
+  const messageStyle =
+    currentMessageSize == MAX_MESSAGE_SIZE ? "text-red-500" : "text-gray-400";
+
+  const messageElement = (
+    <div className={"text-right text-sm " + messageStyle}>
+      {currentMessageSize}/{MAX_MESSAGE_SIZE}
+    </div>
+  );
 
   return (
     <div className="text-center">
       <h1 className="text-xl font-bold text-black mb-4">
         QR Message Generator
       </h1>
-      <div className="w-full">
+      <div className="w-full mb-6">
         <textarea
-          className="border border-gray-400 mb-6 w-full p-4 rounded-md appearance-none"
+          className="border border-gray-400 mb-2 w-full p-4 rounded-md appearance-none"
           defaultValue={props.message}
+          value={props.message}
           placeholder={"Type in a message and I'll make a QR code for it!"}
-          onChange={(x) => props.setMessage(x.currentTarget.value)}
+          onChange={(x) => {
+            const newMessageSize = x.currentTarget.value.length;
+            if (newMessageSize <= MAX_MESSAGE_SIZE) {
+              props.setMessage(x.currentTarget.value);
+            }
+          }}
         />
+        {messageElement}
       </div>
       <div>
         <button

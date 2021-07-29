@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Link, NavLink } from "react-router-dom";
 
 const Layout: React.FC<{}> = (props) => {
   const githubIcon = <FontAwesomeIcon icon={faGithub} />;
