@@ -13,12 +13,12 @@ const TextInputView: React.FC<TextInputViewProps> = (props) => {
 
   return (
     <div className="text-center">
-      <h1 className="text-xl font-medium text-black mb-4">
+      <h1 className="text-xl font-bold text-black mb-4">
         QR Message Generator
       </h1>
       <div className="w-full">
         <textarea
-          className="border border-gray-400 mb-6 w-full p-4 rounded-md"
+          className="border border-gray-400 mb-6 w-full p-4 rounded-md appearance-none"
           defaultValue={props.message}
           placeholder={"Type in a message and I'll make a QR code for it!"}
           onChange={(x) => props.setMessage(x.currentTarget.value)}

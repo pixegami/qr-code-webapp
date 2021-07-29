@@ -11,7 +11,7 @@ const QRImageView: React.FC<QRImageViewProps> = (props) => {
 
   return (
     <div className="text-center">
-      <h1 className="text-xl font-medium text-black mb-2">QR Message Code</h1>
+      <h1 className="text-xl font-bold text-black mb-2">QR Message Code</h1>
       <div className="text-gray-600">Scan this code to see your message!</div>
       <div className="h-48 flex">
         <img
