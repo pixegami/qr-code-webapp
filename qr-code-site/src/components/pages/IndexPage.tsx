@@ -1,16 +1,24 @@
 import React from "react";
 import FooApi from "../foo/api/FooApi";
+import Layout from "./Layout";
+import QRImageView from "./QRImageView";
+import TextInputView from "./TextInputView";
 
 interface IndexPageProps {}
 
 const IndexPage: React.FC<IndexPageProps> = (props) => {
   const [message, setMessage] = React.useState<string>("");
   const [imageUrl, setImageUrl] = React.useState<string>("");
+  const [tag, setTag] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const generateQrMessage = () => {
+    setIsLoading(true);
     FooApi.generateQRFromMessage(message).then((r) => {
       console.log(r);
       const presignedUrl: string = r.payload["presigned_url"];
+      const tag: string = r.payload["tag"];
+      setTag(tag);
       setImageUrl(presignedUrl);
     });
   };
@@ -18,26 +26,19 @@ const IndexPage: React.FC<IndexPageProps> = (props) => {
   let interactiveElement = null;
 
   if (imageUrl) {
-    interactiveElement = <img src={imageUrl} />;
+    interactiveElement = <QRImageView imageUrl={imageUrl} tag={tag} />;
   } else {
     interactiveElement = (
-      <div>
-        <div className="text-2xl mb-4">This is the index page</div>
-        <div>
-          <textarea
-            className="border border-black"
-            defaultValue={message}
-            onChange={(x) => setMessage(x.currentTarget.value)}
-          />
-        </div>
-        <div>
-          <button onClick={generateQrMessage}>Send</button>
-        </div>
-      </div>
+      <TextInputView
+        message={message}
+        setMessage={setMessage}
+        generateQrMessage={generateQrMessage}
+        isLoading={isLoading}
+      />
     );
   }
 
-  return <div>{interactiveElement}</div>;
+  return <Layout>{interactiveElement}</Layout>;
 };
 
 export default IndexPage;

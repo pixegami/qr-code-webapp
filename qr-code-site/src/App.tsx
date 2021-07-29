@@ -1,12 +1,6 @@
 import React from "react";
-import "./App.css";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import IndexPage from "./components/pages/IndexPage";
 import ViewPage from "./components/pages/ViewPage";
 
